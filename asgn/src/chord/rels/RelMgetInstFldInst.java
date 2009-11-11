@@ -33,12 +33,13 @@ public class RelMgetInstFldInst extends ProgramRel {
                 for (Inst inst : cfg.getNodes()) {
                     if (inst instanceof InstFldRefInst) {
                         InstFldRefInst asgn = (InstFldRefInst) inst;
-                        if (asgn.isWr()) return; // not a get
-                        int mIdx = domM.get(meth);
-                        int vIdx = domV.get(asgn.getVar());
-                        int fIdx = domF.get(asgn.getField());
-                        int bIdx = domV.get(asgn.getBase());
-                        add(mIdx, vIdx, fIdx, bIdx);
+                        if (!asgn.isWr()) {
+                            int mIdx = domM.get(meth);
+                            int vIdx = domV.get(asgn.getVar());
+                            int fIdx = domF.get(asgn.getField());
+                            int bIdx = domV.get(asgn.getBase());
+                            add(mIdx, vIdx, fIdx, bIdx);
+                        }
                     }
                 }
             }

@@ -1,7 +1,15 @@
 package chord.rels;
 
+import chord.program.CFG;
+import chord.program.Method;
+import chord.program.insts.Inst;
+import chord.program.insts.InstFldRefInst;
 import chord.project.Chord;
 import chord.project.ProgramRel;
+
+import chord.doms.DomM;
+import chord.doms.DomV;
+import chord.doms.DomF;
 
 /**
  * Relation containing each tuple (m,b,f,v) such that method m
@@ -13,6 +21,25 @@ import chord.project.ProgramRel;
 )
 public class RelMputInstFldInst extends ProgramRel {
 	public void fill() {
-        throw new RuntimeException("cs265: implement this method");
+	    DomM domM = (DomM) doms[0];
+	    DomV domV = (DomV) doms[1];
+            DomF domF = (DomF) doms[2];
+            for (Method meth : domM) {
+                CFG cfg = meth.getCFG();
+                if (cfg == null)
+                    continue;
+                for (Inst inst : cfg.getNodes()) {
+                    if (inst instanceof InstFldRefInst) {
+                        InstFldRefInst asgn = (InstFldRefInst) inst;
+                        if (asgn.isWr()) {
+                            int mIdx = domM.get(meth);
+                            int vIdx = domV.get(asgn.getVar());
+                            int fIdx = domF.get(asgn.getField());
+                            int bIdx = domV.get(asgn.getBase());
+                            add(mIdx, vIdx, fIdx, bIdx);
+                        }
+                    }
+                }
+            }
 	}
 }
