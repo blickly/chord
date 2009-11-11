@@ -8,6 +8,9 @@ import chord.program.insts.ObjVarAsgnInst;
 import chord.project.Chord;
 import chord.project.ProgramRel;
 
+import chord.doms.DomM;
+import chord.doms.DomV;
+
 /**
  * Relation containing each tuple (m,v1,v2) such that method m
  * contains a copy-assignment statement of the form <tt>v1 = v2</tt> 
