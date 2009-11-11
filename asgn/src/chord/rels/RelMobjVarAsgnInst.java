@@ -1,5 +1,10 @@
 package chord.rels;
 
+import chord.program.CFG;
+import chord.program.Method;
+import chord.program.insts.Inst;
+import chord.program.insts.ObjValAsgnInst;
+import chord.program.insts.ObjVarAsgnInst;
 import chord.project.Chord;
 import chord.project.ProgramRel;
 
@@ -15,6 +20,21 @@ import chord.project.ProgramRel;
 )
 public class RelMobjVarAsgnInst extends ProgramRel {
 	public void fill() {
-        throw new RuntimeException("cs265: implement this method");
+	    DomM domM = (DomM) doms[0];
+            DomV domV = (DomV) doms[1];	    
+            for (Method meth : domM) {
+                CFG cfg = meth.getCFG();
+                if (cfg == null)
+                    continue;
+                for (Inst inst : cfg.getNodes()) {
+                    if (inst instanceof ObjVarAsgnInst) {
+                        ObjVarAsgnInst asgn = (ObjVarAsgnInst) inst;
+                        int mIdx = domM.get(meth);
+                        int v0Idx = domV.get(asgn.getLvar());
+                        int v1Idx = domV.get(asgn.getRvar());
+                        add(mIdx, v0Idx, v1Idx);
+                    }
+                }
+            }
 	}
 }
