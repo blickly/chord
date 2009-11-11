@@ -3,6 +3,7 @@ package chord.rels;
 import chord.program.Method;
 import chord.project.Chord;
 import chord.project.ProgramRel;
+import chord.doms.DomM;
 
 /**
  * Relation containing all class initializer methods, namely, methods
