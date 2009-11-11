@@ -1,7 +1,13 @@
 package chord.rels;
 
+import chord.program.Method;
+import chord.program.Var;
 import chord.project.Chord;
 import chord.project.ProgramRel;
+
+import chord.doms.DomM;
+import chord.doms.DomZ;
+import chord.doms.DomV;
 
 /**
  * Relation containing each tuple (m,z,v) such that local variable
@@ -13,6 +19,20 @@ import chord.project.ProgramRel;
 )
 public class RelMmethRet extends ProgramRel {
 	public void fill() {
-        throw new RuntimeException("cs265: implement this method");
+            DomM domM = (DomM) doms[0];
+            //DomZ domZ = (DomZ) doms[1];
+            DomV domV = (DomV) doms[2];
+            int numM = domM.size();
+            for (int mIdx = 0; mIdx < numM; mIdx++) {
+                Method mVal = domM.get(mIdx);
+                int zIdx = 0;
+                if (mVal.hasCFG()) {
+                    for (Var ret : mVal.getCFG().getRets()) {
+                        int vIdx = domV.get(ret);
+                        add(mIdx, zIdx, vIdx);
+                        zIdx++;
+                    }
+                }
+            }
 	}
 }
