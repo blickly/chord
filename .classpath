@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="main/classes" path="main/src/java"/>
-	<classpathentry kind="src" output="waitnotify/classes" path="waitnotify/src/java"/>
-	<classpathentry kind="src" output="downcast/classes" path="downcast/src/java"/>
-	<classpathentry kind="src" output="deadlock/classes" path="deadlock/src/java"/>
-	<classpathentry kind="src" output="datarace/classes" path="datarace/src/java"/>
-	<classpathentry kind="src" output="monosite/classes" path="monosite/src/java"/>
-	<classpathentry exported="true" kind="lib" path="lib/trove-2.0.1_rc1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/j2h.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/bddbddb/bddbddb.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/bddbddb/javabdd-1.0b2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/bddbddb/jdom.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/bddbddb/jwutil-1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/saxon8.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/java2html.jar"/>
-	<classpathentry kind="lib" path="lib/soot/jasminclasses-2.3.0.jar"/>
-	<classpathentry kind="lib" path="lib/soot/polyglotclasses-1.3.5.jar"/>
-	<classpathentry kind="lib" path="lib/soot/sootclasses-2.3.0.jar"/>
-	<classpathentry kind="lib" path="lib/scannotation-1.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/javassist.jar"/>
+	<classpathentry kind="src" output="classes" path="src"/>
+	<classpathentry kind="var" path="JRE_LIB" rootpath="JRE_SRCROOT" sourcepath="JRE_SRC"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/bddbddb/bddbddb.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/bddbddb/javabdd-1.0b2.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/bddbddb/jdom.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/bddbddb/jwutil-1.0.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/soot/jasminclasses-2.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/soot/polyglotclasses-1.3.5.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/soot/sootclasses-2.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/trove-2.0.1_rc1.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/scannotation-1.0.2.jar"/>
+	<classpathentry kind="lib" path="/home/blickly/workspace/chord/lib/javassist.jar"/>
 	<classpathentry kind="output" path="output"/>
 </classpath>

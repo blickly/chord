@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>classes</name>
+			<type>2</type>
+			<location>/home/blickly/classes/fa09/cs265/chord/main/classes</location>
+		</link>
+		<link>
+			<name>src</name>
+			<type>2</type>
+			<location>/home/blickly/classes/fa09/cs265/chord/main/src</location>
+		</link>
+	</linkedResources>
 </projectDescription>
