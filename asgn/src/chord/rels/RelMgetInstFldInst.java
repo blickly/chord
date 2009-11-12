@@ -8,6 +8,7 @@ import chord.project.Chord;
 import chord.project.ProgramRel;
 
 import chord.program.insts.InstFldRefInst;
+import chord.program.Var;
 
 import chord.doms.DomM;
 import chord.doms.DomV;
@@ -35,8 +36,9 @@ public class RelMgetInstFldInst extends ProgramRel {
                     if (inst instanceof InstFldRefInst) {
                         InstFldRefInst asgn = (InstFldRefInst) inst;
                         if (!asgn.isWr()) {
-                            add(meth, asgn.getVar(),
-                                    asgn.getField(), asgn.getBase());
+                            Var v = asgn.getVar();
+                            if (v == null) continue;
+                            add(meth, v, asgn.getField(), asgn.getBase());
                         }
                     }
                 }
