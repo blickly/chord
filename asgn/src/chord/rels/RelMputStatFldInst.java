@@ -21,8 +21,8 @@ import chord.doms.DomM;
 public class RelMputStatFldInst extends ProgramRel {
     public void fill() {
         DomM domM = (DomM) doms[0];
-        //DomV domV = (DomV) doms[1];
-        //DomF domF = (DomF) doms[2];
+        //DomV domV = (DomV) doms[2];
+        //DomF domF = (DomF) doms[1];
         for (Method meth : domM) {
             CFG cfg = meth.getCFG();
             if (cfg == null)
@@ -33,7 +33,7 @@ public class RelMputStatFldInst extends ProgramRel {
                     if (asgn.isWr()) {
                         Var v = asgn.getVar();
                         if (v == null) continue;
-                        add(meth, v, asgn.getField());
+                        add(meth, asgn.getField(), v);
                     }
                 }
             }
