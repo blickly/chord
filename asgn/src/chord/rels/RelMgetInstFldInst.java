@@ -24,9 +24,9 @@ import chord.doms.DomF;
 public class RelMgetInstFldInst extends ProgramRel {
 	public void fill() {
 	    DomM domM = (DomM) doms[0];
-            DomV domV = (DomV) doms[1];
-            DomF domF = (DomF) doms[2];
-            DomV domB = (DomV) doms[3];
+//            DomV domV = (DomV) doms[1];
+//            DomF domF = (DomF) doms[2];
+//            DomV domB = (DomV) doms[3];
             for (Method meth : domM) {
                 CFG cfg = meth.getCFG();
                 if (cfg == null)
@@ -35,11 +35,8 @@ public class RelMgetInstFldInst extends ProgramRel {
                     if (inst instanceof InstFldRefInst) {
                         InstFldRefInst asgn = (InstFldRefInst) inst;
                         if (!asgn.isWr()) {
-                            int mIdx = domM.get(meth);
-                            int vIdx = domV.get(asgn.getVar());
-                            int fIdx = domF.get(asgn.getField());
-                            int bIdx = domB.get(asgn.getBase());
-                            add(mIdx, vIdx, fIdx, bIdx);
+                            add(meth, asgn.getVar(),
+                                    asgn.getField(), asgn.getBase());
                         }
                     }
                 }
