@@ -25,9 +25,6 @@ import chord.doms.DomF;
 public class RelMgetInstFldInst extends ProgramRel {
 	public void fill() {
 	    DomM domM = (DomM) doms[0];
-//            DomV domV = (DomV) doms[1];
-//            DomF domF = (DomF) doms[2];
-//            DomV domB = (DomV) doms[3];
             for (Method meth : domM) {
                 CFG cfg = meth.getCFG();
                 if (cfg == null)

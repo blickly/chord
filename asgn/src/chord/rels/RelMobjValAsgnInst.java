@@ -22,9 +22,9 @@ import chord.doms.DomH;
 public class RelMobjValAsgnInst extends ProgramRel {
 	public void fill() {
 	    DomM domM = (DomM) doms[0];
+            /* // Canceled approach 1
             DomV domV = (DomV) doms[1];
             DomH domH = (DomH) doms[2];
-            /* // Canceled approach 1
             int sizeH = domH.size()
             for (int hIdx = 0; hIdx < sizeH; hIdx++) {
                 ObjValAsgnInst hVal = domH.get(hIdx);
@@ -41,10 +41,7 @@ public class RelMobjValAsgnInst extends ProgramRel {
                 for (Inst inst : cfg.getNodes()) {
                         if (inst instanceof ObjValAsgnInst) {
                             ObjValAsgnInst hVal = (ObjValAsgnInst) inst;
-                            int mIdx = domM.get(meth);
-                            int vIdx = domV.get(hVal.getVar());
-                            int hIdx = domH.get(hVal);
-                            add(mIdx, vIdx, hIdx);
+                            add(meth, hVal.getVar(), hVal);
                         }
                 }
             }

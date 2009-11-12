@@ -14,13 +14,11 @@ import chord.doms.DomM;
 	sign = "M0"
 )
 public class RelClinitM extends ProgramRel {
-	public void fill() {
-	           DomM domM = (DomM) doms[0];
-	                int numM = domM.size();
-	                for (int mIdx = 0; mIdx < numM; mIdx++) {
-	                        Method mVal = domM.get(mIdx);
-	                        if (mVal.isClinit())
-	                                add(mIdx);
-	                }
-	}
+    public void fill() {
+        DomM domM = (DomM) doms[0];
+        for (Method mVal : domM) {
+            if (mVal.isClinit())
+                add(mVal);
+        }
+    }
 }

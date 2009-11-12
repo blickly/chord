@@ -22,16 +22,14 @@ import chord.doms.DomT;
 	sign = "T0"
 )
 public class RelClassT extends ProgramRel {
-	public void fill() {
-		DomT domT = (DomT) doms[0];
-        int numT = domT.size();
-		for (int tIdx = 0; tIdx < numT; tIdx++) {
-            Type tVal = domT.get(tIdx);
+    public void fill() {
+        DomT domT = (DomT) doms[0];
+        for (Type tVal : domT) {
             TypeKind kind = tVal.getKind();
             if (kind == TypeKind.CONCRETE_CLASS_TYPE ||
-				kind == TypeKind.ABSTRACT_CLASS_TYPE) {
-				add(tIdx);
-			}
-		}
-	}
+                    kind == TypeKind.ABSTRACT_CLASS_TYPE) {
+                add(tVal);
+            }
+        }
+    }
 }

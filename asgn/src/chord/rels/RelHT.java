@@ -22,14 +22,10 @@ import chord.project.ProgramRel;
 	sign = "H0,T1:T1_H0"
 )
 public class RelHT extends ProgramRel {
-	public void fill() {
-		DomH domH = (DomH) doms[0];
-		DomT domT = (DomT) doms[1];
-		int numH = domH.size();
-		for (int hIdx = 0; hIdx < numH; hIdx++) {
-			ObjValAsgnInst hVal = domH.get(hIdx);
-			int tIdx = domT.get(hVal.getType());
-			add(hIdx, tIdx);
-		}
-	}
+    public void fill() {
+        DomH domH = (DomH) doms[0];
+        for (ObjValAsgnInst hVal : domH) {
+            add(hVal, hVal.getType());
+        }
+    }
 }
