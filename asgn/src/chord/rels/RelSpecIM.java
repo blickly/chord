@@ -22,7 +22,7 @@ public class RelSpecIM extends ProgramRel {
     public void fill() {
         DomI domI = (DomI) doms[0];
         for (InvkInst inst : domI) {
-            if (inst.getKind() == InvkKind.INVK_SPECIAL) {
+            if (inst.getInvkKind() == InvkKind.INVK_SPECIAL) {
                 add(inst, inst.getRslvMethod());
             }
         }
