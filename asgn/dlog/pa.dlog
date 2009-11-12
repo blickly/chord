@@ -44,6 +44,9 @@ IM(i:I0,m:M0) output
 # Intermediate Relations
 ###
 
+Reachable(m:M0) output
+Reachable(0).
+Reachable(m) :- Reachable(m1), MI(m1, i), IM(i, m).
 # cs265: declare any relations here that you want to store
 # intermediate results.  Qualify them as output relations
 # (just as VH, FH, HFH, and IM above) so that you can debug
@@ -53,6 +56,15 @@ IM(i:I0,m:M0) output
 ###
 # Constraints
 ###
+VH(v,h) :- Reachable(m), MobjValAsgnInst(m,v,h).
+VH(v,h) :- Reachable(m), MobjVarAsgnInst(m,v,v2), VH(v2,h).
+#VH(v,h) :- MgetInstFldInst(_,v,f,v2), HFH(v2,f,h).
+
+FH(0,0).
+HFH(0,0,0).
+
+IM(i,m) :- statIM(i,m).
+IM(i,m) :- specIM(i,m).
 
 # cs265: write Datalog rules here specifying how to compute
 # output relations from the input relations
