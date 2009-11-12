@@ -24,6 +24,7 @@ public class RelMputInstFldInst extends ProgramRel {
 	    DomM domM = (DomM) doms[0];
 	    DomV domV = (DomV) doms[1];
             DomF domF = (DomF) doms[2];
+            DomV domB = (DomV) doms[3];
             for (Method meth : domM) {
                 CFG cfg = meth.getCFG();
                 if (cfg == null)
@@ -35,7 +36,7 @@ public class RelMputInstFldInst extends ProgramRel {
                             int mIdx = domM.get(meth);
                             int vIdx = domV.get(asgn.getVar());
                             int fIdx = domF.get(asgn.getField());
-                            int bIdx = domV.get(asgn.getBase());
+                            int bIdx = domB.get(asgn.getBase());
                             add(mIdx, vIdx, fIdx, bIdx);
                         }
                     }
