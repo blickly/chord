@@ -20,7 +20,8 @@ public class RelVirtIM extends ProgramRel {
     public void fill() {
         DomI domI = (DomI) doms[0];
         for (InvkInst inst : domI) {
-            if (inst.getInvkKind() == InvkKind.INVK_VIRTUAL) {
+            if (inst.getInvkKind() == InvkKind.INVK_VIRTUAL
+                    || inst.getInvkKind() == InvkKind.INVK_INTERFACE) {
                 add(inst, inst.getRslvMethod());
             }
         }
