@@ -56,15 +56,35 @@ Reachable(m) :- Reachable(m1), MI(m1, i), IM(i, m).
 ###
 # Constraints
 ###
-VH(v,h) :- Reachable(m), MobjValAsgnInst(m,v,h).
-VH(v,h) :- Reachable(m), MobjVarAsgnInst(m,v,v2), VH(v2,h).
-#VH(v,h) :- MgetInstFldInst(_,v,f,v2), HFH(v2,f,h).
 
-FH(0,0).
-HFH(0,0,0).
+# v = new h
+VH(v,h) :- Reachable(m), MobjValAsgnInst(m,v,h), VHfilter(v,h).
+# v = v2
+VH(v,h) :- Reachable(m), MobjVarAsgnInst(m,v,v2), VH(v2,h), VHfilter(v,h).
+# v = b.f
+VH(v,h) :- Reachable(m), MgetInstFldInst(m,v,f,b), VH(b,h1), HFH(h1,f,h), VHfilter(v,h).
+# b.f = v2
+HFH(h1,f,h2) :- Reachable(m), MputInstFldInst(m,b,f,v2), VH(b,h1), VH(v2,h2).
+# f = v
+FH(f,h) :- Reachable(m), MputStatFldInst(m,f,v), VH(v,h).
+# v = f
+VH(v,h) :- Reachable(m), MgetStatFldInst(m,v,f), FH(f,h), VHfilter(v,h).
+
+# Constraint 7.
+# Arguments
+VH(v,h) :- Reachable(m1), MI(m1,i), IinvkArg(i,n,v1), VH(v1,h), IM(i,m2), MmethArg(m2,n,v), VHfilter(v,h).
+# Return Values
+VH(v,h) :- Reachable(m1), MI(m1,i), IinvkRet(i,n,v), IM(i,m2), MmethRet(m2, n, v2), VH(v2,h), VHfilter(v,h).
+#MmethArg(m:M0,n:Z0,v:V0) input
+#MmethRet(m:M0,n:Z0,v:V1) input
+#IinvkArg(i:I0,n:Z0,v:V1) input
+#IinvkRet(i:I0,n:Z0,v:V0) input
 
 IM(i,m) :- statIM(i,m).
 IM(i,m) :- specIM(i,m).
+#IM(i,m) :- virtIM(i,m).
+IM(i,m) :- virtIM(i,mc),IinvkArg(i,0,v),VH(v,h),HT(h,t),cha(mc,t,m).
+#IM(i,m) :- virtIM(i,mc), cha(mc, _, m).
 
 # cs265: write Datalog rules here specifying how to compute
 # output relations from the input relations
