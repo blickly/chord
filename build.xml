@@ -62,7 +62,7 @@
   <target name="run" description="run Chord">
     <fail unless="chord.work.dir" message="Property chord.work.dir not defined"/>
     <property file="${chord.work.dir}/chord.properties"/>
-    <property name="chord.max.heap.size" value="1024m"/>
+    <property name="chord.max.heap.size" value="2048m"/>
     <property name="chord.max.stack.size" value="256k"/>
     <property name="bddbddb.max.heap.size" value="1024m"/>
     <path id="chord_java_analysis_path">
