@@ -37,7 +37,7 @@ public class RelMputInstFldInst extends ProgramRel {
                         if (asgn.isWr()) {
                             Var v = asgn.getVar();
                             if (v == null) continue;
-                            add(meth, v, asgn.getField(), asgn.getBase());
+                            add(meth, asgn.getBase(), asgn.getField(), v);
                         }
                     }
                 }
