@@ -8,6 +8,8 @@ import chord.program.insts.ObjVarAsgnInst;
 import chord.project.Chord;
 import chord.project.ProgramRel;
 
+import chord.program.Var;
+import chord.program.insts.PhiExpAsgnInst;
 import chord.doms.DomM;
 import chord.doms.DomV;
 
@@ -24,7 +26,6 @@ import chord.doms.DomV;
 public class RelMobjVarAsgnInst extends ProgramRel {
 	public void fill() {
 	    DomM domM = (DomM) doms[0];
-            DomV domV = (DomV) doms[1];	    
             for (Method meth : domM) {
                 CFG cfg = meth.getCFG();
                 if (cfg == null)
@@ -32,10 +33,12 @@ public class RelMobjVarAsgnInst extends ProgramRel {
                 for (Inst inst : cfg.getNodes()) {
                     if (inst instanceof ObjVarAsgnInst) {
                         ObjVarAsgnInst asgn = (ObjVarAsgnInst) inst;
-                        int mIdx = domM.get(meth);
-                        int v0Idx = domV.get(asgn.getLvar());
-                        int v1Idx = domV.get(asgn.getRvar());
-                        add(mIdx, v0Idx, v1Idx);
+                        add(meth, asgn.getLvar(), asgn.getRvar());
+                    } else if (inst instanceof PhiExpAsgnInst) {
+                        PhiExpAsgnInst asgn = (PhiExpAsgnInst) inst;
+                        for (Var rVar : asgn.getRvars()) {
+                            add(meth, asgn.getLvar(), rVar);
+                        }
                     }
                 }
             }
