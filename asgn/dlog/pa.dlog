@@ -85,7 +85,7 @@ VH(v,h) :- reachableI(i), IinvkArg(i,n,v1), VH(v1,h), IM(i,m), MmethArg(m,n,v), 
 VH(v,h) :- reachableI(i), IinvkRet(i,n,v), IM(i,m), MmethRet(m, n, v2), VH(v2,h), VHfilter(v,h).
 
 # Call graph
-IM(i,m) :- statIM(i,m).
-IM(i,m) :- specIM(i,m).
-IM(i,m) :- virtIM(i,mc), IinvkArg(i,0,v), VH(v,h), HT(h,t), cha(mc,t,m).
+IM(i,m) :- reachableI(i), statIM(i,m).
+IM(i,m) :- reachableI(i), specIM(i,m).
+IM(i,m) :- reachableI(i), virtIM(i,mc), IinvkArg(i,0,v), VH(v,h), HT(h,t), cha(mc,t,m).
 
